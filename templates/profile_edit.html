@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Edit Profile</title>
+</head>
+<body>
+
+  <h1>edit page</h1>
+  <h2>{{ user.username }}</h2>
+
+  <form method="POST" action="{{ url_for('profile_edit') }}">
+    <h3>first_name</h3>
+    <input type="text" name="first_name" value="{{ user.first_name }}">
+    <h3>last_name</h3>
+    <input type="text" name="last_name" value="{{ user.last_name }}">
+    <input type="submit" name="save" value="save">
+  </form>
+
+</body>
+</html>

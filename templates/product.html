@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/style.css') }}">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+  <title>Shoe Store</title>
+  <meta charset="utf-8">
+</head>
+<body>
+
+  <div class="container">
+    <nav>
+      <h1>
+        <a class="home-link" href="/">
+          <i class="fas fa-menorah"></i> Sababa
+        </a>
+      </h1>
+
+      <form>
+        <input type="text" name="search">
+        <input type="submit" name="submit">
+      </form>
+    </nav>
+
+    <h1 class="product-name">{{ product.name }}</h1>
+
+    <section class="image-section">
+      <img src="{{ url_for('static', filename='images/shoes/') }}{{ product.image }}">
+    </section>
+
+    <section class="details-section">
+      <h4>Product details</h4>
+      <ul class="helper-readability">
+        {% for detail in product.details %}
+        <li>{{ detail }}</li>
+        {% endfor %}
+      </ul>
+    </section>
+
+    <section class="buy-section">
+      {% for rating in range(0, 5) %}
+        {% if rating < product.rating %}
+          <i class="star-icon fas fa-star"></i>
+        {% else %}
+          <i class="star-icon far fa-star"></i>
+        {% endif %}
+      {% endfor %}
+
+      <p class="helper-readability">{{ product.description }}</p>
+
+      <h2 class="price-label">${{ product.price }}</h2>
+
+      <button class="buy-now">
+        <i class="fas fa-shopping-cart"></i>
+        Buy Now
+      </button>
+
+      <ul class="user-comments">
+        {% for comment in comments %}
+        <li class="user-comment">
+          <img src="{{ url_for('static', filename='images/users/') }}{{ comment.user_picture }}">
+          <h3>{{ comment.username }}</h3>
+          <p>{{ comment.comment }}</p>
+        </li>
+        {% endfor %}
+      </ul>
+    </section>
+  </div>
+
+</body>
+</html>
